@@ -1,5 +1,5 @@
 {
-  "name": "@holochain/hc-web-client",
+  "name": "connoropolous-hc-web-client",
   "version": "0.5.3",
   "description": "Holochain Conductor connection helper for web based UIs and any Javascript client",
   "main": "lib/index.js",
