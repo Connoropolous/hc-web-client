@@ -88,7 +88,7 @@ Ensure the web UI is hosted by a Holochain Conductor or manually specify url as 
     })
   })
 
-function getUrlFromConductor(): Promise<string> {
+function getUrlFromConductor (): Promise<string> {
   return fetch(CONDUCTOR_CONFIG)
     .then(data => data.json())
     .then(json => json.dna_interface.driver.port)
@@ -99,18 +99,18 @@ function getUrlFromConductor(): Promise<string> {
  * Ensure that a ws client never attempts to call when the socket is not ready
  * Instead, return a promise that resolves only when the socket is connected and the call is made
  */
-async function callWhenConnected(ws, method, payload, timeout = null) {
+async function callWhenConnected (ws, method, payload, timeout = null) {
   return new Promise((resolve, reject) => {
     let callTimer
     const genCallTimer = () => {
       return timeout
         ? setTimeout(() => {
-            reject(
+          reject(
               `Timeout occurred during ws call. method: ${method}, payload: ${JSON.stringify(
                 payload
               )}`
             )
-          }, timeout)
+        }, timeout)
         : null
     }
     const handleResult = result => {
@@ -125,12 +125,12 @@ async function callWhenConnected(ws, method, payload, timeout = null) {
     } else {
       const connectTimer = timeout
         ? setTimeout(() => {
-            reject(
+          reject(
               `Timeout while waiting for ws to connect. method: ${method}, payload: ${JSON.stringify(
                 payload
               )}`
             )
-          }, timeout)
+        }, timeout)
         : null
       ws.once('open', () => {
         clearTimeout(connectTimer)
